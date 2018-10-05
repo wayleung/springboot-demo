@@ -5,6 +5,6 @@
 </head>
 <body>
 	<h1>500-系统错误</h1>
-	<h1>${myException}</h1>
+	<h2>${myException}</h2>
 </body>
 </html>
