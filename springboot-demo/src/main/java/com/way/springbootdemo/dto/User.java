@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.io.Serializable;
 
 /**
  * @Auther: Way Leung wayleung13@163.com
@@ -11,7 +12,11 @@ import javax.persistence.Id;
  * @Description:
  */
 @Entity
-public class User {
+public class User implements Serializable {
+
+    //要添加序列化
+    private static final long serialVersionUID = 8892853727668868385L;
+
     @Id
     @GeneratedValue
     private Integer id;
