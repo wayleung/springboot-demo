@@ -17,8 +17,13 @@ public class User implements Serializable {
     //要添加序列化
     private static final long serialVersionUID = 8892853727668868385L;
 
+//    public static long getSerialVersionUID() {
+//        return serialVersionUID;
+//    }
+
     @Id
     @GeneratedValue
+    @Column
     private Integer id;
 
     @Column
