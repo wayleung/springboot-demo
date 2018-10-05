@@ -21,17 +21,29 @@
         <td>${user.id}</td>
         <td>${user.username}</td>
         <td>${user.password}</td>
-        <#--<td>${gender}</td>-->
+    <#--<td>${gender}</td>-->
         <td>${(user.gender==1)?then('男','女')}</td>
-        <#--如果是unix生成的时间戳是精确到秒级的，而java是精确到毫秒级的，如果我将时间戳转为long再*1000是否有效？实验：-->
-        <#--string转为number再*1000-->
-        <#--<#assign dlong = birthdate?number * 1000 />-->
+    <#--如果是unix生成的时间戳是精确到秒级的，而java是精确到毫秒级的，如果我将时间戳转为long再*1000是否有效？实验：-->
+    <#--string转为number再*1000-->
+    <#--<#assign dlong = birthdate?number * 1000 />-->
         <#assign dlong = user.birthdate*1000 />
         <td>${dlong?number_to_datetime?string('yyyy-MM-dd HH:mm:ss')}</td>
     </tr>
 </table>
 
+<input type="button" value="showAllUsers" onclick="showAllUsers()">
 </body>
+<script>
+    function showAllUsers() {
+        $.ajax({
+            url: "http://localhost:8081/api/user",
+            method:"GET",
+            success:function (data) {
+                console.log(data);
+            }
+        });
+    }
+</script>
 <script type="text/javascript" src="/webjars/jquery/2.1.4/jquery.min.js"></script>
 <script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
 </html>
