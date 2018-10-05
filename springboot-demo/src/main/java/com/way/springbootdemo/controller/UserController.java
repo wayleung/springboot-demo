@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.websocket.server.PathParam;
 import java.util.List;
 
 /**
@@ -24,13 +23,14 @@ public class UserController {
     UserService userService;
 
     @RequestMapping(value = "/user",method = RequestMethod.PUT)
+    @ResponseBody
     User insertUser(User user){
         return userService.insertUser(user);
     }
 
     @RequestMapping(value = "/user/{id}",method = RequestMethod.DELETE)
     @ResponseBody
-    void deleteUserById(@PathParam(value = "id") Integer id){
+    void deleteUserById(@PathVariable(name = "id") Integer id){
         userService.deleteUserById(id);
     }
 
@@ -49,7 +49,7 @@ public class UserController {
 
     @RequestMapping(value = "/user/{id}",method = RequestMethod.GET)
     @ResponseBody
-    User queryUserById(@PathParam(value = "id")Integer id){
+    User queryUserById(@PathVariable(name = "id")Integer id){
         return userService.queryUserById(id);
     }
 }
