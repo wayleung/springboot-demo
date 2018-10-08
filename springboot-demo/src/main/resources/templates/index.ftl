@@ -36,7 +36,7 @@
 <script>
     function showAllUsers() {
         $.ajax({
-            url: "http://localhost:8081/api/user",
+            url: "http://localhost:8082/api/user",
             method:"GET",
             success:function (data) {
                 console.log(data);
