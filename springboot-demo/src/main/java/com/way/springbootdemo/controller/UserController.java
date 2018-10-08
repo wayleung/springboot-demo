@@ -24,6 +24,9 @@ public class UserController {
 
     @RequestMapping(value = "/user",method = RequestMethod.PUT)
     @ResponseBody
+    //@CrossOrigin(origins = "http://localhost:8080", maxAge = 3600)
+    //@CrossOrigin("http://localhost:8080")
+    //局部跨域
     User insertUser(User user){
         return userService.insertUser(user);
     }
