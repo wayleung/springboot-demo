@@ -83,6 +83,7 @@
             <artifactId>spring-boot-starter-freemarker</artifactId>
         </dependency>
 
+
         <!--redis-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -99,6 +100,7 @@
             <groupId>net.sf.ehcache</groupId>
             <artifactId>ehcache</artifactId>
         </dependency>
+
 
     </dependencies>
 
