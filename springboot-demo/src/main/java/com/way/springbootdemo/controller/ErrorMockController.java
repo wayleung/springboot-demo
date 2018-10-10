@@ -23,7 +23,7 @@ public class ErrorMockController {
 
     @RequestMapping("/showError")
     @ResponseBody
-    List<User> show(@PathParam(value = "flag") Integer flag){
+    public List<User> show(@PathParam(value = "flag") Integer flag){
         if(flag==1){
             throw new RuntimeException("测试异常");
         }else{

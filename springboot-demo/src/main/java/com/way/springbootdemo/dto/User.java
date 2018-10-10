@@ -1,5 +1,8 @@
 package com.way.springbootdemo.dto;
 
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,6 +15,9 @@ import java.io.Serializable;
  * @Description:
  */
 @Entity
+//更新部分字段 仅支持hibernate的jpa
+@DynamicUpdate
+@DynamicInsert
 public class User implements Serializable {
 
     //要添加序列化

@@ -25,14 +25,14 @@ public class FreemarkerController {
     UserService userService;
 
     @RequestMapping("/index")
-    String index(ModelMap map) {
+    public String index(ModelMap map) {
         User user = userService.queryUserById(1);
         map.put("user",user);
         return "index";
     }
 
     @RequestMapping("/users")
-    String users(ModelMap map) {
+    public String users(ModelMap map) {
         List<User> users = userService.queryAllUsers();
         map.put("users",users);
         return "users";

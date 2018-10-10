@@ -3,6 +3,7 @@ package com.way.springbootdemo.controller;
 import com.way.springbootdemo.dto.User;
 import com.way.springbootdemo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.CacheManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,37 +23,41 @@ public class UserController {
     @Autowired
     UserService userService;
 
+//    @Autowired
+//    CacheManager cacheManager;
+
+
     @RequestMapping(value = "/user",method = RequestMethod.PUT)
     @ResponseBody
     //@CrossOrigin(origins = "http://localhost:8080", maxAge = 3600)
     //@CrossOrigin("http://localhost:8080")
     //局部跨域
-    User insertUser(User user){
+    public User insertUser(User user){
         return userService.insertUser(user);
     }
 
     @RequestMapping(value = "/user/{id}",method = RequestMethod.DELETE)
     @ResponseBody
-    void deleteUserById(@PathVariable(name = "id") Integer id){
+    public void deleteUserById(@PathVariable(name = "id") Integer id){
         userService.deleteUserById(id);
     }
 
     @RequestMapping(value = "/user",method = RequestMethod.POST)
     @ResponseBody
-    User updateUser(User user){
+    public User updateUser(User user){
         return userService.updateUser(user);
     }
 
     @RequestMapping(value = "/user",method = RequestMethod.GET)
     @ResponseBody
-    List<User> queryAllUsers(){
+    public List<User> queryAllUsers(){
         return userService.queryAllUsers();
     }
 
 
     @RequestMapping(value = "/user/{id}",method = RequestMethod.GET)
     @ResponseBody
-    User queryUserById(@PathVariable(name = "id")Integer id){
+    public User queryUserById(@PathVariable(name = "id")Integer id){
         return userService.queryUserById(id);
     }
 }
