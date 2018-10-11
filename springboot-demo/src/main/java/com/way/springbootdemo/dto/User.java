@@ -29,7 +29,7 @@ public class User implements Serializable {
 
     @Id
     @GeneratedValue
-    @Column
+//    @Column
     private Integer id;
 
     @Column
@@ -53,6 +53,15 @@ public class User implements Serializable {
         this.gender = gender;
         this.birthdate = birthdate;
     }
+
+    public User(Integer id,String username, String password, Integer gender, Long birthdate) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.gender = gender;
+        this.birthdate = birthdate;
+    }
+
 
     public Integer getId() {
         return id;

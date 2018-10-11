@@ -3,6 +3,8 @@ package com.way.springbootdemo.service.impl;
 import com.way.springbootdemo.dao.UserDao;
 import com.way.springbootdemo.dto.User;
 import com.way.springbootdemo.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
@@ -26,28 +28,33 @@ import java.util.Optional;
  * @Date: 10/3/2018 17:27
  * @Description:
  */
-//@CacheConfig(cacheNames ={"myCache"})
-//@CacheConfig(cacheNames ="myCache")
+//@CacheConfig(cacheNames ={"userCache"})
+@CacheConfig(cacheNames ="userCache")
 @Service
 public class UserServiceImpl implements UserService {
+    private Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
+
     @Autowired
     private UserDao userDao;
 
-//    @CachePut(key = "#p0")
+    @CachePut(key = "#user.id")
     @Override
     public User insertUser(User user) {
+        logger.info("插入功能，更新缓存，直接写库, user=" +user);
         return userDao.save(user);
     }
 
-//    @CacheEvict(key = "#p0")
+    @CacheEvict(key = "#p0")
     @Override
     public void deleteUserById(Integer id) {
+        logger.info("删除功能，删除缓存，直接写库, id=" + id);
         userDao.deleteById(id);
     }
-
-//    @CachePut(key = "#p0")
+    //这里参数user是实体类 不能用"#p0"  第一个参数
+    @CachePut(key = "#user.id")
     @Override
     public User updateUser(User user) {
+        logger.info("更新功能，更新缓存，直接写库, user=" +user);
         return userDao.save(user);
     }
 
@@ -57,9 +64,10 @@ public class UserServiceImpl implements UserService {
         return userDao.findAll();
     }
 
-//    @Cacheable(key = "#p0")
+    @Cacheable(key = "#p0")
     @Override
     public User queryUserById(Integer id) {
+        logger.info("查询功能，缓存找不到，直接读库, id=" +id);
         return userDao.findById(id).orElse(null);
     }
 }
